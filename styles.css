@@ -1,55 +1,96 @@
+/* Общие стили */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
+    background-color: #fff;
+    color: #000;
     margin: 0;
     padding: 0;
-    background: #fafafa;
-    color: #333;
 }
 
-header {
-    background: #ff7043;
-    color: white;
-    padding: 1rem;
-    text-align: center;
-}
-
-.catalog {
+/* Контейнер для карточек */
+.container {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 1rem;
-    gap: 1rem;
+    flex-direction: column;
+    gap: 30px;
+    padding: 20px;
 }
 
+/* Адаптивность: горизонтально на больших экранах */
+@media (min-width: 900px) {
+    .container {
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+    }
+}
+
+/* Карточки */
 .card {
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-    width: 250px;
-    padding: 1rem;
-    text-align: center;
-}
-
-.card img {
+    background-color: #f9f9f9;
+    border: 1px solid #000;
+    border-radius: 12px;
+    padding: 20px;
     width: 100%;
-    border-radius: 6px;
+    max-width: 350px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
 }
 
-button {
-    margin-top: 10px;
-    padding: 10px;
-    background: #ff7043;
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* Заголовки и цена */
+.card h2 {
+    font-size: 1.5em;
+    margin: 0 0 10px 0;
+}
+
+.card .price {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Кнопки */
+.buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 10px 15px;
     border: none;
-    color: white;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
+    font-weight: bold;
+    transition: background 0.2s;
 }
 
-button:hover {
-    background: #e64a19;
+.btn.black {
+    background-color: #000;
+    color: #fff;
 }
 
-footer {
-    text-align: center;
-    padding: 1rem;
+.btn.black:hover {
+    background-color: #333;
+}
+
+.btn.large {
+    flex: 1 1 100%;
+}
+
+/* Минимальный заказ */
+.min-order {
+    font-size: 0.9em;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+/* Список преимуществ */
+.advantages {
+    list-style-type: disc;
+    padding-left: 20px;
 }
