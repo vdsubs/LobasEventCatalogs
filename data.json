@@ -1,0 +1,61 @@
+{
+  "categories": [
+    {
+      "id": "cocktails",
+      "name": "Коктейли",
+      "cover": "https://www.liquor.com/thmb/JU_y7AGwryO9Nyxkfwz3QSLquak=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Colletti_Royale_Credit_Tim_Nusog_3500x3500-primary-a06bcfc6c0e84c48b2f0a74a119e6d34.jpg/seed/lemonade/640/480"
+    },
+    {
+      "id": "lemonades",
+      "name": "Лимонады",
+      "cover": "https://picsum.photos/seed/lemonade/640/480"
+    },
+    {
+      "id": "coffee",
+      "name": "Кофе",
+      "cover": "https://picsum.photos/seed/coffee/640/480"
+    }
+  ],
+  "items": [
+    {
+      "id": "margarita",
+      "cat": "cocktails",
+      "name": "Маргарита",
+      "desc": "Текила, лайм, апельсиновый ликер",
+      "img": "https://picsum.photos/seed/margarita/800/600",
+      "price": "350 ₽"
+    },
+    {
+      "id": "mojito",
+      "cat": "cocktails",
+      "name": "Мохито",
+      "desc": "Ром, лайм, мята, сода",
+      "img": "https://picsum.photos/seed/mojito/800/600",
+      "price": "320 ₽"
+    },
+    {
+      "id": "berry-lemonade",
+      "cat": "lemonades",
+      "name": "Ягодный лимонад",
+      "desc": "Смородина, клубника, мята",
+      "img": "https://picsum.photos/seed/berry/800/600",
+      "price": "250 ₽"
+    },
+    {
+      "id": "citrus-lemonade",
+      "cat": "lemonades",
+      "name": "Цитрусовый лимонад",
+      "desc": "Апельсин, лимон, грейпфрут",
+      "img": "https://picsum.photos/seed/citrus/800/600",
+      "price": "250 ₽"
+    },
+    {
+      "id": "latte",
+      "cat": "coffee",
+      "name": "Латте",
+      "desc": "Эспрессо, молоко",
+      "img": "https://picsum.photos/seed/latte/800/600",
+      "price": "220 ₽"
+    }
+  ]
+}
