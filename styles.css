@@ -1,4 +1,3 @@
-/* Общие стили */
 body {
     font-family: 'Arial', sans-serif;
     background-color: #fff;
@@ -7,66 +6,77 @@ body {
     padding: 0;
 }
 
-/* Контейнер для карточек */
-.container {
+.tariffs-container {
     display: flex;
     flex-direction: column;
     gap: 30px;
-    padding: 20px;
+    padding: 30px;
+    justify-content: center;
+    align-items: center;
 }
 
-/* Адаптивность: горизонтально на больших экранах */
+/* Горизонтально на больших экранах */
 @media (min-width: 900px) {
-    .container {
+    .tariffs-container {
         flex-direction: row;
-        justify-content: center;
         align-items: flex-start;
     }
 }
 
-/* Карточки */
-.card {
-    background-color: #f9f9f9;
-    border: 1px solid #000;
-    border-radius: 12px;
-    padding: 20px;
+.tariff-card {
+    background-color: #fff;
+    border: 2px solid #000;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    padding: 25px;
     width: 100%;
-    max-width: 350px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    transition: transform 0.2s;
+    max-width: 320px;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.card:hover {
+.tariff-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.25);
 }
 
-/* Заголовки и цена */
-.card h2 {
-    font-size: 1.5em;
-    margin: 0 0 10px 0;
+.tariff-header h2 {
+    margin: 0;
+    font-size: 1.6em;
+    font-weight: bold;
 }
 
-.card .price {
+.tariff-header .price {
+    margin: 10px 0 15px 0;
     font-size: 1.2em;
     font-weight: bold;
-    margin-bottom: 10px;
 }
 
-/* Кнопки */
+.advantages {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin-bottom: 15px;
+}
+
+.min-order {
+    font-size: 0.9em;
+    color: #555;
+    margin-bottom: 15px;
+}
+
 .buttons {
     display: flex;
     gap: 10px;
-    margin-bottom: 10px;
     flex-wrap: wrap;
 }
 
 .btn {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    padding: 12px 20px;
+    border-radius: 10px;
     font-weight: bold;
-    transition: background 0.2s;
+    text-align: center;
+    transition: background 0.2s, color 0.2s;
 }
 
 .btn.black {
@@ -82,15 +92,8 @@ body {
     flex: 1 1 100%;
 }
 
-/* Минимальный заказ */
-.min-order {
-    font-size: 0.9em;
-    color: #555;
-    margin-bottom: 10px;
-}
-
-/* Список преимуществ */
-.advantages {
-    list-style-type: disc;
-    padding-left: 20px;
+/* Premium Plus визуально выделяется */
+.premium-plus {
+    border: 2px solid #000;
+    background: linear-gradient(145deg, #fff, #f1f1f1);
 }
