@@ -1,84 +1,294 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Тарифы обслуживания</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Тарифы — Premium Bar</title>
+  <meta name="color-scheme" content="dark light" />
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --card: #111111;
+      --text: #f5f5f5;
+      --muted: #cfcfcf;
+      --line: #1e1e1e;
+      --btn-bg: #0a0a0a;
+      --btn-bg-hover: #171717;
+      --btn-text: #ffffff;
+      --accent: #ffffff;
+      --radius: 16px;
+      --gap: 20px;
+      --shadow: 0 4px 18px rgba(0,0,0,0.35);
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .page {
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 16px 28px;
+      gap: 20px;
+    }
+
+    .brand {
+      width: 100%;
+      max-width: 1140px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .brand__title {
+      letter-spacing: 0.14em;
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .tariffs {
+      width: 100%;
+      max-width: 1140px;
+      display: flex;
+      flex-direction: column; /* вертикально на мобилках */
+      gap: var(--gap);
+    }
+
+    /* Горизонтально на больших экранах */
+    @media (min-width: 980px) {
+      .tariffs {
+        flex-direction: row;
+      }
+    }
+
+    .card {
+      background: linear-gradient(180deg, #121212 0%, #0e0e0e 100%);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      flex: 1 1 auto;
+    }
+
+    .card__header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 14px;
+    }
+
+    .card__title {
+      font-size: 18px;
+      letter-spacing: 0.18em;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .card__price {
+      font-size: 14px;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .card__badge {
+      font-size: 12px;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      padding-top: 10px;
+    }
+
+    .card__list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .card__item {
+      position: relative;
+      padding-left: 18px;
+      color: #e9e9e9;
+      line-height: 1.4;
+    }
+
+    .card__item::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.6em;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #ffffff;
+      opacity: 0.22;
+    }
+
+    .card__actions {
+      margin-top: auto;
+      display: grid;
+      gap: 10px;
+      grid-template-columns: 1fr;
+    }
+
+    /* На широких — аккуратная двухколоночная матрица для кнопок (кроме Premium Plus) */
+    @media (min-width: 980px) {
+      .card__actions--dual {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 44px;
+      padding: 0 16px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: var(--btn-bg);
+      color: var(--btn-text);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: background 0.2s ease, transform 0.06s ease, border-color 0.2s ease;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: var(--btn-bg-hover);
+      border-color: #222;
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+    }
+
+    .btn--full {
+      grid-column: 1 / -1;
+      height: 48px;
+      letter-spacing: 0.08em;
+    }
+
+    /* Тонкая разделительная линия-блок (эстетика “премиум”) */
+    .divider {
+      height: 1px;
+      width: 100%;
+      max-width: 1140px;
+      background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0) 100%);
+    }
+  </style>
 </head>
 <body>
-<div class="tariffs-container">
-
-    <!-- Comfort -->
-    <div class="tariff-card">
-        <div class="tariff-header">
-            <h2>COMFORT</h2>
-            <p class="price">900 ₽ / напиток</p>
-        </div>
-        <ul class="advantages">
-            <li>Выбор до 4 напитков (1 из них б/а)</li>
-            <li>Персонал (4 часа работы)</li>
-            <li>Доставка в пределах МКАД</li>
-            <li>Выбор дресс-кода (7 образов)</li>
-        </ul>
-        <p class="min-order">мин заказ 120 шт</p>
-        <div class="buttons">
-            <a href="menu.html" class="btn black">Меню</a>
-            <a href="#" class="btn black">Привилегии</a>
-        </div>
+  <main class="page">
+    <div class="brand">
+      <div class="brand__title">Premium Bar Service</div>
     </div>
 
-    <!-- Premium -->
-    <div class="tariff-card">
-        <div class="tariff-header">
-            <h2>PREMIUM</h2>
-            <p class="price">1 150 ₽ / напиток</p>
-        </div>
-        <ul class="advantages">
-            <li>Выбор до 5 напитков (1 из них б/а)</li>
-            <li>Премиальный алкоголь</li>
-            <li>Персонал (6 часов работы)</li>
-            <li>Доставка в пределах МКАД</li>
-            <li>Жидкий азот</li>
-            <li>На все барные стойки — 20 %</li>
-            <li>Скидки на все спец. подачи — 20 %</li>
-            <li>Морозилки для льда</li>
-            <li>Выбор дресс-кода (7 образов)</li>
+    <div class="tariffs">
+      <!-- Comfort -->
+      <section class="card" aria-labelledby="comfort-title">
+        <header class="card__header">
+          <h2 id="comfort-title" class="card__title">Comfort</h2>
+          <div class="card__price">900 ₽ / напиток</div>
+        </header>
+
+        <ul class="card__list" aria-label="Преимущества тарифа Comfort">
+          <li class="card__item">Выбор до 4 напитков (1 из них б/а)</li>
+          <li class="card__item">Персонал (4 часа работы)</li>
+          <li class="card__item">Доставка в пределах МКАД</li>
+          <li class="card__item">Выбор дресс-кода (7 образов)</li>
         </ul>
-        <p class="min-order">мин заказ 170 шт</p>
-        <div class="buttons">
-            <a href="menu.html" class="btn black">Меню</a>
-            <a href="#" class="btn black">Привилегии</a>
+
+        <div class="card__badge">мин заказ 120 шт</div>
+
+        <div class="card__actions card__actions--dual" role="group" aria-label="Действия тарифа Comfort">
+          <a class="btn" href="./menu-comfort.html">Меню</a>
+          <a class="btn" href="./privilegii-comfort.html">Привилегии</a>
         </div>
+      </section>
+
+      <!-- Premium -->
+      <section class="card" aria-labelledby="premium-title">
+        <header class="card__header">
+          <h2 id="premium-title" class="card__title">Premium</h2>
+          <div class="card__price">1 150 ₽ / напиток</div>
+        </header>
+
+        <ul class="card__list" aria-label="Преимущества тарифа Premium">
+          <li class="card__item">Выбор до 5 напитков (1 из них б/а)</li>
+          <li class="card__item">Премиальный алкоголь</li>
+          <li class="card__item">Персонал (6 часов работы)</li>
+          <li class="card__item">Доставка в пределах МКАД</li>
+          <li class="card__item">Жидкий азот</li>
+          <li class="card__item">На все барные стойки — 20 %</li>
+          <li class="card__item">Скидки на все спец. подачи — 20 %</li>
+          <li class="card__item">Морозилки для льда</li>
+          <li class="card__item">Выбор дресс-кода (7 образов)</li>
+        </ul>
+
+        <div class="card__badge">мин заказ 170 шт</div>
+
+        <div class="card__actions card__actions--dual" role="group" aria-label="Действия тарифа Premium">
+          <a class="btn" href="./menu-premium.html">Меню</a>
+          <a class="btn" href="./privilegii-premium.html">Привилегии</a>
+        </div>
+      </section>
+
+      <!-- Premium Plus -->
+      <section class="card" aria-labelledby="plus-title">
+        <header class="card__header">
+          <h2 id="plus-title" class="card__title">Premium Plus</h2>
+          <div class="card__price">1 250 ₽ / напиток</div>
+        </header>
+
+        <ul class="card__list" aria-label="Преимущества тарифа Premium Plus">
+          <li class="card__item">Выбор до 6 напитков (1 из них б/а)</li>
+          <li class="card__item">Премиальный алкоголь</li>
+          <li class="card__item">Персонал (8 часов работы)</li>
+          <li class="card__item">Доставка по Мск и за МКАД до 30 км</li>
+          <li class="card__item">Разработка тематического меню</li>
+          <li class="card__item">Дегустация за наш счёт</li>
+          <li class="card__item">Жидкий азот</li>
+          <li class="card__item">BUBBLE BLASTER</li>
+          <li class="card__item">Минеральная вода</li>
+          <li class="card__item">Морозилки для льда</li>
+          <li class="card__item">Барная стойка за наш счёт</li>
+          <li class="card__item">Скидки на все спец. подачи — 20 %</li>
+          <li class="card__item">Выбор дресс-кода (7 образов)</li>
+        </ul>
+
+        <div class="card__badge">мин заказ 200 шт</div>
+
+        <div class="card__actions" role="group" aria-label="Действия тарифа Premium Plus">
+          <a class="btn btn--full" href="./menu-premium-plus.html">Меню</a>
+        </div>
+      </section>
     </div>
 
-    <!-- Premium Plus -->
-    <div class="tariff-card premium-plus">
-        <div class="tariff-header">
-            <h2>PREMIUM PLUS</h2>
-            <p class="price">1 250 ₽ / напиток</p>
-        </div>
-        <ul class="advantages">
-            <li>Выбор до 6 напитков (1 из них б/а)</li>
-            <li>Премиальный алкоголь</li>
-            <li>Персонал (8 часов работы)</li>
-            <li>Доставка по Мск и за МКАД до 30 км</li>
-            <li>Разработка тематического меню</li>
-            <li>Дегустация за наш счёт</li>
-            <li>Жидкий азот</li>
-            <li>BUBBLE BLASTER</li>
-            <li>Минеральная вода</li>
-            <li>Морозилки для льда</li>
-            <li>Барная стойка за наш счёт</li>
-            <li>Скидки на все спец. подачи — 20 %</li>
-            <li>Выбор дресс-кода (7 образов)</li>
-        </ul>
-        <p class="min-order">мин заказ 200 шт</p>
-        <div class="buttons">
-            <a href="menu.html" class="btn black large">Меню</a>
-        </div>
-    </div>
-
-</div>
+    <div class="divider" aria-hidden="true"></div>
+  </main>
 </body>
 </html>
